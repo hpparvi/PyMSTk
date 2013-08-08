@@ -1,5 +1,5 @@
-MSTk
-====
+PyMSTk
+======
 
 Python Model Selection Toolkit
 
@@ -23,4 +23,4 @@ Trivial routines that may be implemeted
 Authors
 -------
 
- Hannu Parviainen <hpparvi@gmail.com>
+ - Hannu Parviainen <hpparvi@gmail.com>
