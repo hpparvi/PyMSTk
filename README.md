@@ -5,9 +5,14 @@ Python Model Selection Toolkit
 
 A small Python toolkit for the estimation of global likelihoods (Bayesian evidence).
 
-Currently included routines
+Currently implemented routines
 
- - Basic bridge sampling
+ - Bridge sampling against a proxy distribution
+   - Estimates the absolute global likelihood given 
+     - a set of posterior sample locations
+     - a set of posterior samples corresponding to the locations
+     - posterior distribution function
+     - proxy distribution parameters
  
 Routines to be implemented
 
