@@ -36,13 +36,10 @@ def bs(x, q, q1fun, q2fun=None, means=None, sigmas=None, n2=100, niter=5, return
     x1s  = np.asarray(x)
     x2s  = q2fun.rvs(n2)
 
-    lq11 = np.asarray(q)
-    lq12 = np.array([q1fun(x2) for x2 in x2s])
+    lq11 = np.asarray(q).ravel()
+    lq12 = np.array([q1fun(x2) for x2 in x2s]).ravel()
     lq22 = np.array([q2fun(x2) for x2 in x2s])
     lq21 = np.array([q2fun(x1) for x1 in x1s])
-
-    print lq11.shape
-    print lq12.shape
 
     n1, ln1 = lq11.size, m.log(lq11.size)
     n2, ln2 = n2, m.log(n2)
@@ -92,10 +89,8 @@ class MVN(object):
             return np.array([self._pdf(xx) for xx in x])
         
     def logpdf(self, x):
-        x = np.asarray(x)
-        return np.array([np.log(self._pdf(x))])
+        return np.log(self._pdf(np.asarray(x)))
  
-
     def __call__(self, x):
         return self.logpdf(x)
 
@@ -115,7 +110,7 @@ class MVU(object):
         self.means = lims.mean(1)
         self.widths = np.asarray(lims[:,1] - lims[:,0])
         self.pdf = np.prod(1./self.widths)
-        self.lpdf = np.array([np.log(self.pdf)])
+        self.lpdf = np.log(self.pdf)
     
     def rvs(self, size=1):
         return (np.random.uniform(size=(size,self.means.size))-0.5)*self.widths + self.means
@@ -124,7 +119,7 @@ class MVU(object):
         if np.all(np.abs(x-self.means) < 0.5*self.widths):
             return self.lpdf
         else:
-            return np.array([-1e18])
+            return -1e18
 
     def __call__(self, x):
         return self.logpdf(x)
