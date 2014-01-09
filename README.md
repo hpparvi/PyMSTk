@@ -1,7 +1,7 @@
 PyMSTk
 ======
 
-Python Model Selection Toolkit
+Python Model Selection Toolkit (spelled PyMiSTake)
 
 A small Python toolkit for the estimation of global likelihoods (Bayesian evidence).
 
